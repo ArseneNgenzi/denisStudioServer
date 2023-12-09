@@ -2,6 +2,9 @@ const express = require("express");
 const nodemailer = require("nodemailer")
 const bodyParser = require("body-parser");
 const mysql = require("mysql2");
+require("dotenv").config()
+
+console.log(process.env.PASSWORD)
 
 const app = express();
 const cors = require("cors");
@@ -10,10 +13,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const db = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "root@123",
-	database: "denisdb",
+	host: process.env.HOST,
+	user: process.env.USER,
+	password: process.env.PASSWORD,
+	database: process.env.NAME,
 });
 
 db.connect((err) => {
